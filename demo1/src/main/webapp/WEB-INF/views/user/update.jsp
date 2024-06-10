@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Join page</h1>
-<form action="/user/join" method="post">
+    <h1>Update Page</h1>
+    <form action="/user/update" method="post">
         <!-- 입력 필드 예시 -->
-        <label for="username">Username:</label>
+        <label for="username">New Username:</label>
         <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label>
+        <label for="password">New Password:</label>
         <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Join">
+        <input type="submit" value="Update">
     </form>
 </body>
 </html>
