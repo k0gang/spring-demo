@@ -12,6 +12,8 @@
         <!-- 입력 필드 예시 -->
         <label for="username">Username:</label>
         <input type="text" id="username" name="username"><br>
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id"><br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Join">
