@@ -12,10 +12,10 @@ public class HomeController {
 		return "user/main";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/join")
-	public String join() {
-		return "user/join";
-	}
+//	@RequestMapping(method = RequestMethod.GET, value = "/join")
+//	public String join() {
+//		return "user/join";
+//	}
 	
 	@RequestMapping("/login")
 	public String login() {

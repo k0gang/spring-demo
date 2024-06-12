@@ -1,17 +1,65 @@
 package com.example.demo1.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping(value = "/user")
+import com.example.demo1.user.model.UserDao;
+
+///join  page mapping
+// /update page mapping
+// /login  page mapping
+// /mypage  page mapping
+
+@RequestMapping("/user")
 @Controller
 public class UserController {
+
+//	@ResponseBody
+	@GetMapping("/login")
+	public String login() {
+
+		return "user/login";
+	}
+
+	@GetMapping("/join")
+	public String join() {
+
+		return "user/join";
+	}
+
+	@GetMapping("/update")
+	public String update() {
+
+		return "user/update";
+	}
+
+	@GetMapping("/mypage")
+	public String mypage() {
+
+		return "user/mypage";
+	}
 	
-	// /join page mapping
+	@GetMapping("/logout")
+	public void logout( HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		session.removeAttribute("log");
+		session.invalidate();
+		
+		System.out.println("로그아웃 성공");
+	}
 	
-	
-	// /update page mapping
-	// /login page mapping
-	// /mypage page mapping
+	@GetMapping("/delete")
+	public void delete(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDao userDao = UserDao.getInstance();
+		int code = (int)session.getAttribute("log");
+		
+		userDao.deleteUser(code);
+	}
+
 }

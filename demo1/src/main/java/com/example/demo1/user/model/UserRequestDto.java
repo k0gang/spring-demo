@@ -12,6 +12,30 @@ public class UserRequestDto {
 	private Timestamp regDate;
 	private Timestamp modDate;
 
+	public UserRequestDto() {
+		
+	}
+	
+	public UserRequestDto(String userName, String password, String firstName, String email) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.email = email;
+	}
+
+	public UserRequestDto(int code, String userName, String password, String firstName, String email, Timestamp regDate,
+			Timestamp modDate) {
+		super();
+		this.code = code;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.email = email;
+		this.regDate = regDate;
+		this.modDate = modDate;
+	}
+
 	public int getCode() {
 		return code;
 	}
