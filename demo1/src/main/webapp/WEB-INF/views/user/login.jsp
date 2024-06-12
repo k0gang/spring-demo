@@ -41,6 +41,9 @@
                 body: JSON.stringify(data)
             })
             .then(response => {
+            	if(response.ok){
+            		window.location.href="http://localhost:8080/user/join";
+            	}
             	console.log("response : ", response);
             	
             	return response.json();
