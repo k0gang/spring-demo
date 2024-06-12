@@ -104,6 +104,14 @@ public class UserRestController {
 		}
 	}
 
+	@PostMapping("/delete")
+	public void delete(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDao userDao = UserDao.getInstance();
+		int code = (int)session.getAttribute("log");
+		
+		userDao.deleteUser(code);
+	}
 
 
 //	@RequestMapping(method = RequestMethod.POST, value = "/delete")

@@ -54,12 +54,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/delete")
-	public void delete(HttpServletRequest request) {
+	public String delete(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		UserDao userDao = UserDao.getInstance();
 		int code = (int)session.getAttribute("log");
+		System.out.println("session 에 저장된 log : " + code);
 		
-		userDao.deleteUser(code);
+		return "user/delete";
 	}
 
 }
