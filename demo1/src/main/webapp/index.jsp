@@ -9,5 +9,6 @@
 <body>
 <h1>Hello</h1>
 <img src="/resources/media/zz.jpg" width="250px">
+
 </body>
 </html>

@@ -68,40 +68,40 @@ public class UserDao {
 		}
 		return join;
 	}
-	
+
 	public boolean updateUser(UserRequestDto userRequestDto, int code) {
 		boolean update = false;
 		try {
 			conn = DBManager.getConnection();
-			
+
 			String sql = "UPDATE users set user_name =?, password=?, first_name=?,email=? WHERE code=? ";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userRequestDto.getUserName());
 			pstmt.setString(2, userRequestDto.getPassword());
 			pstmt.setString(3, userRequestDto.getFirstName());
 			pstmt.setString(4, userRequestDto.getEmail());
 			pstmt.setInt(5, code);
-			
+
 			pstmt.execute();
-			
+
 			update = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return update;
 	}
-	
+
 	public void deleteUser(int code) {
 		try {
 			conn = DBManager.getConnection();
-			
+
 			String sql = "DELETE FROM users WHERE code = ?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, code);
-			pstmt.execute();		
-			
+			pstmt.execute();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -111,14 +111,14 @@ public class UserDao {
 		User user = null;
 		conn = DBManager.getConnection();
 		String sql = "select * from users where user_name = ? and password = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDto.getUserName());
 			pstmt.setString(2, userDto.getPassword());
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				int code = rs.getInt("code");
 				String userName = rs.getString("user_name");
@@ -127,9 +127,9 @@ public class UserDao {
 				String email = rs.getString("email");
 				Timestamp regDate = rs.getTimestamp("reg_date");
 				Timestamp modDate = rs.getTimestamp("mod_date");
-				
+
 				user = new User(code, userName, password, firstName, email, regDate, modDate);
-				
+
 				return user;
 			}
 		} catch (Exception e) {
@@ -138,7 +138,36 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+
+	public User findUserByCode(int code) {
+		User user = null;
+		conn = DBManager.getConnection();
+		String sql = "select * from users where code = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String userName = rs.getString("user_name");
+				String password = rs.getString("password");
+				String firstName = rs.getString("first_name");
+				String email = rs.getString("email");
+				Timestamp regDate = rs.getTimestamp("reg_date");
+				Timestamp modDate = rs.getTimestamp("mod_date");
+
+				user = new User(code, userName, password, firstName, email, regDate, modDate);
+
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return user;
+	}
+
 	public List<User> findAll() {
 		List<User> list = new ArrayList<User>();
 

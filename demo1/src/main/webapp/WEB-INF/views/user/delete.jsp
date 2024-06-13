@@ -11,7 +11,7 @@
 	<!-- 계정 삭제 폼 작성 -->
 	<form action="/user/delete" method="post">
 		<!-- 경고 메시지 -->
-		<p>Are you sure you want to delete your account?</p>
+		<p>ㄹㅇ?</p>
 		<input type="submit" value="Delete">
 	</form>
 </body>

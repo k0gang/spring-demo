@@ -66,7 +66,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/update")
-	public void update(@RequestBody UserRequestDto userRequestDto, HttpServletRequest request) {
+	public ResponseEntity<Response> update(@RequestBody UserRequestDto userRequestDto, HttpServletRequest request) {
 		UserDao userDao = UserDao.getInstance();
 		HttpSession session = request.getSession();
 		
@@ -75,10 +75,14 @@ public class UserRestController {
 		
 		boolean updateResult = userDao.updateUser(userRequestDto, code);
 		
-		if(updateResult) {
+		if (updateResult) {
 			System.out.println("업데이트 성공");
-		}else {
+			Response res =  new Response("업데이트 성공");
+			return new ResponseEntity<>(res, HttpStatus.OK);			
+		} else {
 			System.out.println("업데이트 실패");
+			Response res =  new Response("업데이트 실패");
+			return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);			
 		}
 	}
 
@@ -112,27 +116,4 @@ public class UserRestController {
 		
 		userDao.deleteUser(code);
 	}
-
-
-//	@RequestMapping(method = RequestMethod.POST, value = "/delete")
-//	public void delete() {
-//
-//	}
-
-//	@PostMapping("/login/{userCode}")
-//	public void login(User user , HttpServletRequest request) {
-//		HttpSession session = request.getSession();
-//		
-//		session.setAttribute("userCode", user.getCode());
-//	}
-
-//	@PostMapping("/logout/{userCode}")
-//	public void logout(@PathVariable(name = "userCode") int userCode, HttpServletRequest request) {
-//		System.out.println("userCode : " + userCode);
-//		
-//		HttpSession session = request.getSession();
-//		
-//		session.removeAttribute("log");
-//		session.invalidate();	// 세션 닫기
-//	}	
 }

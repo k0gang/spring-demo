@@ -94,6 +94,14 @@
 			<version>21.3.0.0</version>
 		</dependency>
 
+		<!-- Multipart File -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+		</dependency>
+
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
