@@ -13,6 +13,10 @@ public class BoardRequestDto {
 	private Timestamp regDate;
 	private Timestamp modDate;
 
+	public BoardRequestDto() {
+		
+	}
+	
 	public BoardRequestDto(int author, String title, String content) {
 		super();
 		this.author = author;
